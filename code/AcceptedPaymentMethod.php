@@ -30,7 +30,7 @@ class AcceptedPaymentMethod extends DataObject
 		$fields = parent::getCMSFields();
 		$fields->removeByName(array('IconImage', 'IconFile', 'Sort', 'SiteID'));
 
-		Requirements::javascript('silvershop-accepted-payments/javascript/filefieldswitch.js');
+		Requirements::javascript('accepted-payment-methods/javascript/filefieldswitch.js');
 
 		$folder = 'payment-methods';
 
