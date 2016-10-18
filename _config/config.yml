@@ -10,3 +10,22 @@ SiteConfig:
 File:
   allowed_extensions:
     - svg
+
+######
+# Create some defaults
+# TODO also set default files
+######
+AcceptedPaymentMethodsPopulateTask:
+  defaults:
+    Dankort:
+      Name: "Dankort"
+      #FileType: "Image"
+      #Image: "dankort.png" How to upload programatically?
+    Visa:
+      Name: "Visa"
+    JCB:
+      Name: "JCB"
+    Mastercard:
+      Name: "Mastercard"
+    Maestro:
+      Name: "Maestro"

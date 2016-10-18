@@ -2,11 +2,12 @@
 	<ul class="accepted-payment-methods">
 		<% loop $SiteConfig.SortedPaymentMethods %>
 			<li>
-				<% if $FileType == 'Image' %>
-					$Icon
+				<% if $HasFileOrImage %>
+					<img src="{$Icon.URL}" name="$Name">
 				<% else %>
-					<img src="{$Icon.URL}">
+					<img src="$Icon" alt="$Name">
 				<% end_if %>
+
 			</li>
 		<% end_loop %>
 	</ul>

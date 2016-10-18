@@ -30,7 +30,7 @@ class AcceptedPaymentMethod extends DataObject
 		$fields = parent::getCMSFields();
 		$fields->removeByName(array('IconImage', 'IconFile', 'Sort', 'SiteID'));
 
-		Requirements::javascript('silvershop-accepted-payments/javascript/filefieldswitch.js');
+		Requirements::javascript('accepted-payment-methods/javascript/filefieldswitch.js');
 
 		$folder = 'payment-methods';
 
@@ -51,7 +51,7 @@ class AcceptedPaymentMethod extends DataObject
 						"File"  => _t('AcceptedPaymentMethods.FILE', "File"),
 					),
 					"Image"
-				),
+				)->setDescription('If non is set, will try to fallback to the images folder in this module'),
 				$imagefield,
 				$filefield
 			)
@@ -66,15 +66,26 @@ class AcceptedPaymentMethod extends DataObject
 	public function getIcon()
 	{
 		$item = null;
-		if($this->FileType == 'Image'){
+		if($this->FileType == 'Image' && $this->IconImageID){
 			$item =  $this->IconImage();
 		}
-		if($this->FileType == 'File'){
+		if($this->FileType == 'File' && $this->IconFileID){
 			$item =  $this->IconFile();
+		}
+
+		if(!$item){
+			// try to fallback to the images folder in this module
+			$name = Convert::raw2url($this->Name);
+			$item = '/accepted-payment-methods/images/' . $name . '.png';
 		}
 
 		$this->extend('updateIcon', $item);
 
 		return $item;
+	}
+	
+	public function HasFileOrImage()
+	{
+		return $this->IconImageID || $this->IconFileID;
 	}
 }
