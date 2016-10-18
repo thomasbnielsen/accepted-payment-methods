@@ -1,0 +1,12 @@
+---
+Name: silvershop-accepted-payments
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+SiteConfig:
+  extensions:
+    - AcceptedPaymentMethodsExtension
+File:
+  allowed_extensions:
+    - svg
