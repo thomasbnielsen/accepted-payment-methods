@@ -83,7 +83,7 @@ class AcceptedPaymentMethod extends DataObject
 
 		return $item;
 	}
-	
+
 	public function HasFileOrImage()
 	{
 		return $this->IconImageID || $this->IconFileID;
