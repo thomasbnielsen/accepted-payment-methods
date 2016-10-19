@@ -34,3 +34,6 @@ AcceptedPaymentMethodsPopulateTask:
     Maestro:
       Name: "Maestro"
       DefaultIcon: "maestro.svg"
+    DinersClub:
+      Name: "Diners Club"
+      DefaultIcon: "diners-club.svg"
