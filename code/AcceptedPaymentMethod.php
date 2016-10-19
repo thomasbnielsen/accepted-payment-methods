@@ -61,22 +61,34 @@ class AcceptedPaymentMethod extends DataObject
 	}
 
 	/**
-	 * @return null | File
+	 * @return string | File
 	 */
 	public function getIcon()
 	{
 		$item = null;
-		if($this->FileType == 'Image' && $this->IconImageID){
-			$item =  $this->IconImage();
+		$images_path = '/accepted-payment-methods/images/';
+		$defaults_config = Config::inst()->get('AcceptedPaymentMethodsPopulateTask', 'defaults');
+
+		if ($this->FileType == 'Image' && $this->IconImageID) {
+			$item = $this->IconImage();
 		}
-		if($this->FileType == 'File' && $this->IconFileID){
-			$item =  $this->IconFile();
+		if ($this->FileType == 'File' && $this->IconFileID) {
+			$item = $this->IconFile();
 		}
 
-		if(!$item){
+		// check if any default icon is set
+		if (!$item) {
+			foreach ($defaults_config as $default) {
+				if (in_array($this->Name, $default) && isset($default['DefaultIcon'])) {
+					$item = $images_path . $default['DefaultIcon'];
+				}
+			}
+		}
+
+		if (!$item) {
 			// try to fallback to the images folder in this module
 			$name = Convert::raw2url($this->Name);
-			$item = '/accepted-payment-methods/images/' . $name . '.png';
+			$item = $images_path . $name . '.png';
 		}
 
 		$this->extend('updateIcon', $item);
@@ -86,6 +98,13 @@ class AcceptedPaymentMethod extends DataObject
 
 	public function HasFileOrImage()
 	{
-		return $this->IconImageID || $this->IconFileID;
+		if ($this->IconImageID && $this->FileType == 'Image') {
+			return true;
+		}
+		if ($this->IconFileID && $this->FileType == 'File') {
+			return true;
+		}
+
+		return false;
 	}
 }

@@ -19,13 +19,18 @@ AcceptedPaymentMethodsPopulateTask:
   defaults:
     Dankort:
       Name: "Dankort"
+      DefaultIcon: "dankort.svg"
       #FileType: "Image"
       #Image: "dankort.png" How to upload programatically?
     Visa:
       Name: "Visa"
+      DefaultIcon: "visa.svg"
     JCB:
       Name: "JCB"
+      DefaultIcon: "jcb.svg"
     Mastercard:
       Name: "Mastercard"
+      DefaultIcon: "mastercard.svg"
     Maestro:
       Name: "Maestro"
+      DefaultIcon: "maestro.svg"

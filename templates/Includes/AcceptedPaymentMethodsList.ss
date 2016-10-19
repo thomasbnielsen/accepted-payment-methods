@@ -3,11 +3,10 @@
 		<% loop $SiteConfig.SortedPaymentMethods %>
 			<li>
 				<% if $HasFileOrImage %>
-					<img src="{$Icon.URL}" name="$Name">
+					<img src="{$Icon.URL}" alt="$Name">
 				<% else %>
 					<img src="$Icon" alt="$Name">
 				<% end_if %>
-
 			</li>
 		<% end_loop %>
 	</ul>
