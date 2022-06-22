@@ -1,7 +1,7 @@
 {
     "name": "nobrainerweb/accepted-payment-methods",
     "description": "Provides a simple module to show a user what payment methods are available on your shop",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "module"],
     "license": "BSD-2-Clause",
     "authors": [
