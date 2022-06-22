@@ -4,7 +4,7 @@ After:
   - 'framework/*'
   - 'cms/*'
 ---
-SiteConfig:
+SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - AcceptedPaymentMethodsExtension
 File:

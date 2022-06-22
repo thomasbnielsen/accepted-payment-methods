@@ -1,5 +1,12 @@
 <?php
 
+namespace NobrainerWeb\AcceptedPaymentMethods;
+
+use SilverStripe\Assets\File;
+use SilverStripe\Assets\Image;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\SiteConfig\SiteConfig;
+
 class AcceptedPaymentMethod extends DataObject
 {
     private static $singular_name = 'Accepted payment method';
@@ -15,9 +22,9 @@ class AcceptedPaymentMethod extends DataObject
     );
 
     private static $has_one = array(
-        'Site'      => 'SiteConfig',
-        'IconImage' => 'Image',
-        'IconFile'  => 'File' // If ya want things like SVG
+        'Site'      => SiteConfig::class,
+        'IconImage' => Image::class,
+        'IconFile'  => File::class // If ya want things like SVG
     );
 
     private static $summary_fields = array(

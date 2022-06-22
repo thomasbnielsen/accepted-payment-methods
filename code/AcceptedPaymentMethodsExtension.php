@@ -1,11 +1,13 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: sanderhagenaars
- * Date: 18/10/2016
- * Time: 14:29
- */
+namespace NobrainerWeb\AcceptedPaymentMethods;
+
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\ORM\DataExtension;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+
 class AcceptedPaymentMethodsExtension extends DataExtension
 {
 
@@ -15,16 +17,16 @@ class AcceptedPaymentMethodsExtension extends DataExtension
 	 * @var array
 	 */
 	private static $has_many = array(
-		'AcceptedPaymentMethods' => 'AcceptedPaymentMethod'
+		'AcceptedPaymentMethods' => AcceptedPaymentMethod::class
 	);
 
 	public function updateCMSFields(FieldList $fields)
 	{
-		$config = \GridFieldConfig_RecordEditor::create();
+		$config = GridFieldConfig_RecordEditor::create();
 		if (class_exists('GridFieldOrderableRows')) {
-			$config->addComponent(new \GridFieldOrderableRows());
+			$config->addComponent(new GridFieldOrderableRows());
 		}
-		$gridfield = new \GridField('AcceptedPaymentMethods', 'Accepted Payment Methods', $this->owner->AcceptedPaymentMethods(), $config);
+		$gridfield = new GridField('AcceptedPaymentMethods', 'Accepted Payment Methods', $this->owner->AcceptedPaymentMethods(), $config);
 		$fields->addFieldToTab('Root.AcceptedPaymentMethods', $gridfield);
 	}
 

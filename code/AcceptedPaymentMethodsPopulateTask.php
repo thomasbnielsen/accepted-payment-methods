@@ -1,11 +1,9 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: sanderhagenaars
- * Date: 18/10/2016
- * Time: 16:21
- */
+namespace NobrainerWeb\AcceptedPaymentMethods;
+
+use SilverStripe\Dev\BuildTask;
+
 class AcceptedPaymentMethodsPopulateTask extends BuildTask
 {
 	protected $title = 'Populate accepted payment methods';
